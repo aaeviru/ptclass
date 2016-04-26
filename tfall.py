@@ -5,7 +5,7 @@ import sys
 for root, dirs, files in os.walk(sys.argv[1]):
         for name in files:
                 filename = root + '/' + name
-		if filename[len(filename)-1] == 't':
+		if filename[len(filename)-1] == 'w':#filename pattern
 			num = 0
 			fin = open(filename,"r")
 			dict = {}

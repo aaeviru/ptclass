@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
-#include <set>
+#include <vector>
 #include <map>
 #include "travedir.h"
 
 using namespace std;
 
-set<string> word;
+vector<string> word;
 FILE* fout;
 
 int matrix(const char *path) {
@@ -25,7 +25,7 @@ int matrix(const char *path) {
                 string _path(path);
                 string _dirName(ent->d_name);
                 string fullDirPath = _path + "/" + _dirName;
-                if(_dirName.at(_dirName.length()-1) == 'q'){
+                if(_dirName.at(_dirName.length()-4) == 'w'){//filename pattern
                         char term[200];
                         int tmpnum;
                         FILE* fp = NULL;
@@ -36,7 +36,7 @@ int matrix(const char *path) {
                         while(fscanf(fp,"%s %d",term,&tmpnum) != EOF){
 				vec[string(term)] = tmpnum;
                         }
-                        set<string>::iterator word_it;
+                        vector<string>::iterator word_it;
                         for(word_it=word.begin();word_it!=word.end();++word_it){
                                 it = vec.find(*word_it);
 				if(it != vec.end()){
@@ -70,14 +70,14 @@ int matrix(const char *path) {
 int main(){
    char term[200];
    FILE* fp = NULL;
-   fp = fopen("/home/ko/class/result/wordslist.txt","r");
+   fp = fopen("/home/ec2-user/data/wordslist_dsw.txt","r");
    while(fscanf(fp,"%s\n",term) != EOF){
-      word.insert(string(term));
+      word.push_back(string(term));
    }
    fclose(fp);
 
-   fout = fopen("/mnt/nas2a/ko/classinfo/matrix.txt","w");
-   matrix("/mnt/nas2a/ko/classinfo/");
+   fout = fopen("/home/ec2-user/data/classinfo/matrix.txt","w");
+   matrix("/home/ec2-user/data/classinfo/");
    fclose(fout);
    printf("over\n");
 }
