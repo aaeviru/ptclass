@@ -72,7 +72,7 @@ int List(const char *path) {
 
 
 int main(int argc, char *argv[]){
-   FILE* fword = fopen("result/wordslist.txt","r");
+   FILE* fword = fopen("/home/ec2-user/data/wordslist_dsw.txt","r");
    char term[200];
    int no = 0;
    while(fscanf(fword,"%s",term) != EOF){
@@ -80,6 +80,7 @@ int main(int argc, char *argv[]){
       no++;
    }
    printf("read over\n");
+   fflush(stdout);
    fclose(fword);
    List(argv[1]);
    return 0;

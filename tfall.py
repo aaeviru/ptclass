@@ -26,7 +26,7 @@ for root, dirs, files in os.walk(sys.argv[1]):
 	
 			fin.close()
 			print(filename,num)
-			fout = open(filename+".fq","w")
+			fout = open(filename[:len(filename)-3]+"fq","w")
 			dict = sorted(dict.items(), key=lambda d: d[1], reverse = True)
 			for i in dict:
 				fout.write(i[0] + " " + str(i[1]) + "\n")

@@ -24,7 +24,7 @@ int wordlist(const char *path) {
                 string _dirName(ent->d_name);
                 string fullDirPath = _path + "/" + _dirName;
                 if(_dirName.at(_dirName.length()-1) == 'q'){
-			char term[100];
+			char term[10000];
                         int tmpnum;
       			FILE* fp = NULL;
       			fp = fopen(fullDirPath.c_str(),"r");
@@ -59,24 +59,24 @@ int wordlist(const char *path) {
 }
 
 int main(){
-        char term[100];
+        char term[10000];
         int tmpnum;
         FILE* fp = NULL;
-        fp = fopen("/mnt/nas2a/ko/stopword2.txt","r");
+        fp = fopen("/home/ec2-user/data/stopword2.txt","r");
         while(fscanf(fp,"%s %d",term,&tmpnum) != EOF){
         	stopword.insert(string(term));
         }
         fclose(fp);
 
-        fp = fopen("/mnt/nas2a/ko/onlyonce.txt","r");
+        fp = fopen("/home/ec2-user/data/onlyonce.txt","r");
         while(fscanf(fp,"%s",term) != EOF){
                 stopword.insert(string(term));
         }
         fclose(fp);
 
-	wordlist("/mnt/nas2a/ko/classinfo/");
+	wordlist("/home/ec2-user/data/classinfo/");
 	set<string>::iterator word_it;
-        fp = fopen("/home/ko/class/result/wordslist.txt","w");
+        fp = fopen("/home/ec2-user/data/wordslist.txt","w");
 	for(word_it=word.begin();word_it!=word.end();++word_it){
         	fprintf(fp,"%s\n",word_it->c_str());
         }

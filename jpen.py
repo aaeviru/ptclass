@@ -9,10 +9,10 @@ import unicodedata
 import codecs
 num = 0
 sw = []
-fin = open("/home/ko/class/result/wordslist.txt","r")
-fjp = open("/home/ko/class/result/jp_words.txt","w")
-fen = open("/home/ko/class/result/en_words.txt","w")
-felse = open("/home/ko/class/result/else_words.txt","w")
+fin = open("/home/ec2-user/data/wordslist.txt","r")
+fjp = open("/home/ec2-user/data/jp_words.txt","w")
+fen = open("/home/ec2-user/data/en_words.txt","w")
+felse = open("/home/ec2-user/data/else_words.txt","w")
 def is_japanese(string):
     	for ch in string[:len(string)-1]:
         	name = unicodedata.name(ch) 
@@ -40,9 +40,6 @@ for line in fin:
 		fen.write(line)
 	else:
 		felse.write(line)
-	num = num + 1
-	print num
-	sys.stdout.flush()
 fin.close()
 fjp.close()
 fen.close()

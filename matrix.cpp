@@ -25,7 +25,7 @@ int matrix(const char *path) {
                 string _path(path);
                 string _dirName(ent->d_name);
                 string fullDirPath = _path + "/" + _dirName;
-                if(_dirName.at(_dirName.length()-4) == 'w'){//filename pattern
+                if(_dirName.at(_dirName.length()-1) == 'q'){//filename pattern
                         char term[200];
                         int tmpnum;
                         FILE* fp = NULL;
