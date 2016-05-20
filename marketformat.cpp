@@ -49,7 +49,7 @@ int List(const char *path) {
                 string _path(path);
                 string _dirName(ent->d_name);
                 string fullDirPath = _path + "/" + _dirName;
-                if(_dirName.at(_dirName.length()-2) == 'x')
+                if(_dirName.at(_dirName.length()-1) == 'w')
                 //      printf("%s\n",ent->d_name);
                         if(marketf(fullDirPath.c_str()) < 0)
                                 return -1;
@@ -72,7 +72,7 @@ int List(const char *path) {
 
 
 int main(int argc, char *argv[]){
-   FILE* fword = fopen("/home/ec2-user/data/wordslist_dsw.txt","r");
+   FILE* fword = fopen("/home/ec2-user/git/statresult/wordslist_dsw.txt","r");
    char term[200];
    int no = 0;
    while(fscanf(fword,"%s",term) != EOF){

@@ -70,7 +70,7 @@ int matrix(const char *path) {
 int main(){
    char term[200];
    FILE* fp = NULL;
-   fp = fopen("/home/ec2-user/data/wordslist_dsw.txt","r");
+   fp = fopen("/home/ec2-user/git/statresult/wordslist_dsw.txt","r");
    while(fscanf(fp,"%s\n",term) != EOF){
       word.push_back(string(term));
    }
