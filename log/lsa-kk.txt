@@ -1,0 +1,14 @@
+start
+load completed
+Traceback (most recent call last):
+  File "lsa-kk.py", line 15, in <module>
+    u,sigma,vt = linalg.svds(a,k=kk)
+  File "/usr/lib64/python2.7/dist-packages/scipy/sparse/linalg/eigen/arpack/arpack.py", line 1663, in svds
+    ncv=ncv, which=which, v0=v0)
+  File "/usr/lib64/python2.7/dist-packages/scipy/sparse/linalg/eigen/arpack/arpack.py", line 1577, in eigsh
+    ncv, v0, maxiter, which, tol)
+  File "/usr/lib64/python2.7/dist-packages/scipy/sparse/linalg/eigen/arpack/arpack.py", line 521, in __init__
+    ncv, v0, maxiter, which, tol)
+  File "/usr/lib64/python2.7/dist-packages/scipy/sparse/linalg/eigen/arpack/arpack.py", line 328, in __init__
+    raise ValueError("matrix type must be 'f', 'd', 'F', or 'D'")
+ValueError: matrix type must be 'f', 'd', 'F', or 'D'
