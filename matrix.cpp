@@ -25,7 +25,10 @@ int matrix(const char *path) {
                 string _path(path);
                 string _dirName(ent->d_name);
                 string fullDirPath = _path + "/" + _dirName;
-                if(_dirName.at(_dirName.length()-1) == 'q'){//filename pattern
+                if(_dirName.at(_dirName.length()-1) == 'f' && _dirName.at(_dirName.length()-7) == 'q'){
+					 //filename pattern
+					 //_dirName.at(_dirName.length()-1) == 'q' for normal
+					 //_dirName.at(_dirName.length()-1) == 'f' && _dirName.at(_dirName.length()-7) == 'q' for tfidf
                         char term[200];
                         int tmpnum;
                         FILE* fp = NULL;
@@ -76,7 +79,9 @@ int main(){
    }
    fclose(fp);
 
-   fout = fopen("/home/ec2-user/data/classinfo/matrix.txt","w");
+   fout = fopen("/home/ec2-user/data/classinfo/matrix-tfidf.txt","w");
+	//matrix.txt for normal
+	//matrix-tfidf uses tfidf instead of tf
    matrix("/home/ec2-user/data/classinfo/");
    fclose(fout);
    printf("over\n");

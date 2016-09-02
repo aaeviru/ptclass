@@ -1,6 +1,7 @@
 # ptclass
 
 main.cpp:classify patent by class  
+classname.py:create classname list
 matrix.cpp:create term-class matrix  
 marketformat.cpp:convert txt to market basket format  
 words.cpp:create wordslist  
