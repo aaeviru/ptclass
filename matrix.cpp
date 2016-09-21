@@ -30,20 +30,27 @@ int matrix(const char *path) {
 					 //_dirName.at(_dirName.length()-1) == 'q' for normal
 					 //_dirName.at(_dirName.length()-1) == 'f' && _dirName.at(_dirName.length()-7) == 'q' for tfidf
                         char term[200];
-                        int tmpnum;
+                        double tmpnum;
+								//int for normal double for tfidf
                         FILE* fp = NULL;
-			map<string,int> vec;
-			map<string,int>::iterator it;
+								map<string,double> vec;
+								map<string,double>::iterator it;
+								//int for normal double for tfidf
                         fp = fopen(fullDirPath.c_str(),"r");
+
                         printf("%s\n",fullDirPath.c_str());
-                        while(fscanf(fp,"%s %d",term,&tmpnum) != EOF){
-				vec[string(term)] = tmpnum;
+                        while(fscanf(fp,"%s %lf",term,&tmpnum) != EOF){
+								//fscanf(fp,"%s %d",term,&tmpnum) for normal
+								//fscanf(fp,"%s %lf",term,&tmpnum) for tfidf
+									vec[string(term)] = tmpnum;
                         }
                         vector<string>::iterator word_it;
                         for(word_it=word.begin();word_it!=word.end();++word_it){
                                 it = vec.find(*word_it);
 				if(it != vec.end()){
-					fprintf(fout,"%d ",it->second);
+					fprintf(fout,"%lf ",it->second);
+					//fprintf(fout,"%d ",it->second); for normal
+					//fprintf(fout,"%lf ",it->second); for tfidf
 				}else{
 					fprintf(fout,"0 ");
 				}
