@@ -1,4 +1,5 @@
 #include <stdio.h>  
+#include <stdlib.h>
 #include <dirent.h>  
 #include <sys/types.h>  
 #include <sys/stat.h>  
@@ -116,8 +117,14 @@ int List(const char *path) {
 }  
 int main(int argc, char *argv[]) {  
 	//memset(vec,'\0',sizeof(vec));
+	if(argc != 2){
+		printf("input:input folder\n");
+		return -1;
+	}
+	else
+		printf("outpath:%s\n",OUTPATH);
   	totalnum = 0;
-    	List(argv[1]); 
+    List(argv[1]); 
 /*
  	int tmp1,tmp2,tmp3,tmp4;
 	int max1 = 0,max2 = 0,max3 = 0,max4 = 0;
