@@ -9,6 +9,8 @@ using namespace std;
 
 vector<string> word;
 FILE* fout;
+#define WORDLIST "/home/ec2-user/git/statresult/wordslist_dsw.txt"
+
 
 int matrix(const char *path) {
     //printf("%s\n",path);
@@ -25,32 +27,33 @@ int matrix(const char *path) {
                 string _path(path);
                 string _dirName(ent->d_name);
                 string fullDirPath = _path + "/" + _dirName;
-                if(_dirName.at(_dirName.length()-1) == 'f' && _dirName.at(_dirName.length()-7) == 'q'){
-					 //filename pattern
-					 //_dirName.at(_dirName.length()-1) == 'q' for normal
-					 //_dirName.at(_dirName.length()-1) == 'f' && _dirName.at(_dirName.length()-7) == 'q' for tfidf
+                //if(_dirName.at(_dirName.length()-1) == 'f' && _dirName.at(_dirName.length()-7) == 'q'){//for tfidf
+					 if(_dirName.at(_dirName.length()-1) == 'q'){//for normal
+
                         char term[200];
-                        double tmpnum;
-								//int for normal double for tfidf
+                        //double tmpnum;//for tfidf
+								int tmpnum;//for normal
                         FILE* fp = NULL;
-								map<string,double> vec;
-								map<string,double>::iterator it;
-								//int for normal double for tfidf
+								//map<string,double> vec;//for tfidf
+								//map<string,double>::iterator it;//for tfidf
+								map<string,int> vec;//for normal
+								map<string,int>::iterator it;//for normal
+
                         fp = fopen(fullDirPath.c_str(),"r");
 
                         printf("%s\n",fullDirPath.c_str());
-                        while(fscanf(fp,"%s %lf",term,&tmpnum) != EOF){
-								//fscanf(fp,"%s %d",term,&tmpnum) for normal
-								//fscanf(fp,"%s %lf",term,&tmpnum) for tfidf
+                        //while(fscanf(fp,"%s %lf",term,&tmpnum) != EOF){//for tfidf
+								while(fscanf(fp,"%s %d",term,&tmpnum) != EOF){//for normal
+
 									vec[string(term)] = tmpnum;
                         }
                         vector<string>::iterator word_it;
                         for(word_it=word.begin();word_it!=word.end();++word_it){
                                 it = vec.find(*word_it);
 				if(it != vec.end()){
-					fprintf(fout,"%lf ",it->second);
-					//fprintf(fout,"%d ",it->second); for normal
-					//fprintf(fout,"%lf ",it->second); for tfidf
+					//fprintf(fout,"%lf ",it->second);//for tfidf
+					fprintf(fout,"%d ",it->second);//for normal
+
 				}else{
 					fprintf(fout,"0 ");
 				}
@@ -77,19 +80,25 @@ int matrix(const char *path) {
 
 
 
-int main(){
+int main(int argc,char** argv){
+	if(argc != 3){
+		printf("input:classfile-folder output-file\n");
+		return -1;
+	}else
+		printf("wordlist:%s\n",WORDLIST);
+	
    char term[200];
    FILE* fp = NULL;
-   fp = fopen("/home/ec2-user/git/statresult/wordslist_dsw.txt","r");
+   fp = fopen(WORDLIST,"r");
    while(fscanf(fp,"%s\n",term) != EOF){
       word.push_back(string(term));
    }
    fclose(fp);
 
-   fout = fopen("/home/ec2-user/data/classinfo/matrix-tfidf.txt","w");
+   fout = fopen(argv[2],"w");
 	//matrix.txt for normal
 	//matrix-tfidf uses tfidf instead of tf
-   matrix("/home/ec2-user/data/classinfo/");
+   matrix(argv[1]);
    fclose(fout);
    printf("over\n");
 }

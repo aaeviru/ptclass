@@ -2,10 +2,15 @@ import os
 import os.path
 import re
 import sys
+
+if len(sys.argv) != 2:
+    print "input:input-folder"
+    sys.exit(1)
+
 for root, dirs, files in os.walk(sys.argv[1]):
         for name in files:
                 filename = root + '/' + name
-		if filename[len(filename)-1] == 'w':#filename pattern
+		if filename[len(filename)-1] == 't':#filename pattern
 			num = 0
 			fin = open(filename,"r")
 			dict = {}

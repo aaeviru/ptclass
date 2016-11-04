@@ -7,7 +7,7 @@ from scipy.sparse import linalg
 from scipy import sparse as sp
 import sys
 print "start"
-a = np.loadtxt('/home/ec2-user/data/classinfo/matrix-tfidf.txt')	
+a = np.loadtxt('/home/ec2-user/data/classinfo/matrix-1999B.txt')	
 print "load completed"
 print a
 sys.stdout.flush()
@@ -26,7 +26,7 @@ print abs(vt)
 #np.savetxt('/home/ec2-user/data/classinfo/u.txt',abs(u),fmt='%1.4e')
 #np.savetxt('/home/ec2-user/data/classinfo/sigma.txt',sigma,fmt='%1.4e')
 #np.savetxt('/home/ec2-user/data/classinfo/vt.txt',abs(vt),fmt='%1.4e')
-np.save('/home/ec2-user/data/classinfo/u-tfidf.npy',abs(u))
-np.save('/home/ec2-user/data/classinfo/sigma-tfidf.npy',sigma)
-np.save('/home/ec2-user/data/classinfo/vt-tfidf.npy',abs(vt))
+np.save('/home/ec2-user/data/classinfo/u-1999B.npy',abs(u))
+np.save('/home/ec2-user/data/classinfo/sigma-1999B.npy',sigma)
+np.save('/home/ec2-user/data/classinfo/vt-1999B.npy',abs(vt))
 print "over"
